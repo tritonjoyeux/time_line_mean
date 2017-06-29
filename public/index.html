@@ -13,7 +13,7 @@
 <body ng-app="timeLineApp" class="container" ng-controller="timeLineController as timeLine">
 <div ng-show="timeLine.isDisconnected">
     <div class="col-sm-3"></div>
-    <div class="col-sm-6">
+    <div class="col-sm-6" id="connect">
         <h1>TimeLineApp :</h1>
         <h3>Identifiez vous :</h3>
         <form class="form-inline" name="loginForm" ng-submit="timeLine.loginUser()">
