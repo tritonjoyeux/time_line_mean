@@ -1,0 +1,25 @@
+html, body {
+    min-height: 100%;
+}
+
+html, body {
+    background-color: #DDDDDD;
+}
+
+.fill {
+    min-height: 100px;
+    height: 100px;
+}
+
+.bottom {
+    bottom: 0;
+    position: absolute;
+}
+
+.like-bar {
+    margin-top: 10px;
+}
+
+textarea {
+    resize: none;
+}
