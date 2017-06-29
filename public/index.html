@@ -6,6 +6,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/node_modules/angular/angular.js"></script>
     <script src="js/timeLine.js"></script>
+    <script src="js/animation.js"></script>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -68,7 +69,7 @@
                 </button>
             </div>
             <div class="col-sm-12 like-bar">
-                <div class="progress">
+                <div class="progress" ng-click="timeLine.showMe(post.id)">
                     <div class="progress-bar progress-bar-success" role="progressbar"
                          ng-style="{'width': ((post.like.length/(post.dislike.length + post.like.length)) * 100) + '%'}">
                         {{post.like.length}}
@@ -78,6 +79,12 @@
                         {{post.dislike.length}}
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-12 listOfLikes" ng-show="post.displayLike">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="like in post.like">{{like}} <span class="glyphicon glyphicon-thumbs-up"></span></li>
+                    <li class="list-group-item" ng-repeat="dislike in post.dislike">{{dislike}} <span class="glyphicon glyphicon-thumbs-down"></span></li>
+                </ul>
             </div>
             <div class="col-sm-12 bottom" ng-hide="post.pseudo !== timeLine.pseudo">
                 <input type="button" class="btn btn-danger" value="Supprimer"

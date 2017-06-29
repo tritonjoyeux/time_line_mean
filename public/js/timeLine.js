@@ -40,7 +40,8 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
                 content: timeLine.content,
                 date: new Date(),
                 like: [],
-                dislike: []
+                dislike: [],
+                displayLike: false
             };
 
             currentPost.url = currentPost.url === '' ? imgDefault[Math.floor(Math.random() * imgDefault.length)] : currentPost.url;
@@ -138,4 +139,18 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
             }
         }
     };
+
+    timeLine.showMe = function(id) {
+        for (var i = 0; i < timeLine.posts.length; i++) {
+            var obj = timeLine.posts[i];
+            if (obj.id === id) {
+                console.log(obj.displayLike);
+                if (obj.displayLike === false) {
+                    timeLine.posts[i].displayLike = true;
+                }else {
+                    timeLine.posts[i].displayLike = false;
+                }
+            }
+        }
+    }
 }]);

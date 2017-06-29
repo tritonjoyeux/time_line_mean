@@ -7,17 +7,19 @@ html, body {
 }
 
 .fill {
-    min-height: 100px;
-    height: 100px;
+ margin-bottom: 20px;
 }
 
 .bottom {
-    bottom: 0;
-    position: absolute;
+    margin-top: 10px;
 }
 
 .like-bar {
     margin-top: 10px;
+}
+
+.progress {
+    cursor: pointer;
 }
 
 textarea {
