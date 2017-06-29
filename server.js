@@ -20,15 +20,18 @@ io.on('connection', socket => {
 
         socket.emit('postList', posts);
 
+        //return an id
         socket.on('getId', () => {
             socket.emit("id", guid());
         });
 
+        //event on post send to broadcast
         socket.on('post', (post) => {
             posts.push(post);
             socket.broadcast.emit('post', post)
         });
 
+        //event on delete send to broadcast
         socket.on('deletePost', (objSend) => {
             for (var i = 0; i < posts.length; i++) {
                 var obj = posts[i];
@@ -39,6 +42,7 @@ io.on('connection', socket => {
             socket.broadcast.emit('deletePost', objSend);
         });
 
+        //event on like send to broadcast
         socket.on('likePost', (params) => {
             for (var i = 0; i < posts.length; i++) {
                 var obj = posts[i];
@@ -53,6 +57,7 @@ io.on('connection', socket => {
             }
         });
 
+        //event on dislike send to broadcast
         socket.on('dislikePost', (params) => {
             for (var i = 0; i < posts.length; i++) {
                 var obj = posts[i];

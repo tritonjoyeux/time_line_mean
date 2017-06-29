@@ -69,7 +69,7 @@
                 </button>
             </div>
             <div class="col-sm-12 like-bar">
-                <div class="progress" ng-click="timeLine.showMe(post.id)">
+                <div class="progress" ng-click="timeLine.showMe(post.id)" title="Show list">
                     <div class="progress-bar progress-bar-success" role="progressbar"
                          ng-style="{'width': ((post.like.length/(post.dislike.length + post.like.length)) * 100) + '%'}">
                         {{post.like.length}}

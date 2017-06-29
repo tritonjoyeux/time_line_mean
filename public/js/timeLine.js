@@ -7,6 +7,7 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
     timeLine.socket = io('ws://localhost:3000');
     timeLine.posts = [];
 
+    //default picture
     let imgDefault = [
         "https://www.buzz2000.com/coloriage/plante-aromatique/coloriage-plante-aromatique-19208.jpg",
         "http://data-cache.abuledu.org/256/dessin-de-chauve-souris-566acf40.jpg",
@@ -15,17 +16,18 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
         "http://data-cache.abuledu.org/256/dessin-de-toile-d-araignee-566b182d.jpg"
     ];
 
+    //init
     timeLine.loginUser = function () {
         timeLine.isDisconnected = false;
         timeLine.socket.emit('login', timeLine.pseudo);
 
-        //list of posts
+        //get list of posts
         timeLine.socket.on('postList', function (list) {
             timeLine.posts = list.reverse();
             $scope.$apply();
         });
 
-        //new post from people
+        //event of new post from people
         timeLine.socket.on('post', function (post) {
             timeLine.posts.unshift(post);
             $scope.$apply();
@@ -53,7 +55,7 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
             $scope.$apply();
         });
 
-        //delete post
+        //event on delete post
         timeLine.socket.on('deletePost', (objSend) => {
             for (var i = 0; i < timeLine.posts.length; i++) {
                 var obj = timeLine.posts[i];
@@ -64,6 +66,7 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
             $scope.$apply();
         });
 
+        //event on post like
         timeLine.socket.on('postIsLike', (params) => {
             for (var i = 0; i < timeLine.posts.length; i++) {
                 var obj = timeLine.posts[i];
@@ -78,6 +81,7 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
             $scope.$apply();
         });
 
+        //event on post dislike
         timeLine.socket.on('postIsDislike', (params) => {
             for (var i = 0; i < timeLine.posts.length; i++) {
                 var obj = timeLine.posts[i];
@@ -110,6 +114,7 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
         }
     };
 
+    //ng-click like
     timeLine.likePost = function (id) {
         for (var i = 0; i < timeLine.posts.length; i++) {
             var obj = timeLine.posts[i];
@@ -125,6 +130,7 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
         }
     };
 
+    //ng-click dislike
     timeLine.dislikePost = function (id) {
         for (var i = 0; i < timeLine.posts.length; i++) {
             var obj = timeLine.posts[i];
@@ -140,6 +146,7 @@ angular.module('timeLineApp', []).controller('timeLineController', ['$scope', fu
         }
     };
 
+    //ng-click show list of like/dislike
     timeLine.showMe = function(id) {
         for (var i = 0; i < timeLine.posts.length; i++) {
             var obj = timeLine.posts[i];
